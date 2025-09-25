@@ -21,8 +21,18 @@ public class Main {
     }
     
     public static void missionEnter() {
-        System.out.println("The anyonymous message cannot be traced. Attempting to piece whole message.");
-        
+        try {
+            System.out.println("The anyonymous message cannot be traced. Attempting to piece together the whole message.");
+            Thread.sleep(5000);
+            System.out.println("Interpretation: Your mission is to find MiliBops' secret file. Unknown Entity in need of dire help.");
+            Thread.sleep(2000);
+            System.out.println("--Your command center--")
+            System.out.println("Scan, Search, engage Ultra-Protective Firewall, or ")
+            String commandCenter = scanner.nextLine();
+            
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     
     
