@@ -1,0 +1,130 @@
+import java.util.*;
+
+public class Main {
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final Random rand = new Random();
+
+    public static void main(String[] args) {
+        checkPassword();
+        scanner.close();
+    }
+
+    public static void hacks() throws InterruptedException {
+        String[] words = {
+            "Loading...", "...", "...", "Exploiting Loopholes...", "...", "...",
+            "Penetrating the mainframe...", "...", "...", "...", "...", "Hacking Complete"
+        };
+        for (String word : words) {
+            System.out.println(word);
+            Thread.sleep(1500);
+        }
+    }
+    
+    public static void missionEnter() {
+        System.out.println("The anyonymous message cannot be traced. Attempting to piece whole message.");
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public static void GameEnter() throws InterruptedException {
+        String[] wordz = {
+            "Message: ", "Help! They're after us! The...", "...STATIC...", "...destroy everything with the...", "...STATIC...", "...In a few days!...", "...STATIC...",
+            "...STATIC...", "...only one who can save us...", "...HURRY!...", "...STTTAAAAAAATTTTTTTTTTTIIIIIIIIIIIIIIIICCCCCCCCCCCCCCCCCCCCCCCC..."
+        };
+
+        for (String wordeez : wordz) {
+            System.out.println(wordeez);
+            Thread.sleep(2000);
+        }
+
+        System.out.println("WARNING! VIRUS DETECTED! ENGAGE PROTECTIVE FIREWALL IMMEDIATELY!");
+        int virus = 1;
+        if (virus == 1) {
+            System.out.println("10 seconds to engage firewall: ");
+            String firewall = readLineWithTimeout(10); 
+
+            if (firewall != null && firewall.equals("//cmd:firewall")) {
+                virus -= 1;
+                System.out.println("Virus cleared.");
+                missionEnter();
+            } else {
+                System.out.println("The Virus spread too fast! EMERGENCY SHUTDOWN INITIATED: ");
+                System.out.println("--YOU LOSE--");
+                System.exit(0);
+            }
+        }
+    }
+
+    public static void enterGame() {
+        System.out.println("You have 1 unread message. R to read and E to exit.");
+        String gameEnter = scanner.nextLine();
+        if (gameEnter.equals("R")) {
+            try {
+                GameEnter();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else if (gameEnter.equals("E")) {
+            System.out.println("Nothing interesting happens ever again.");
+            System.exit(0);
+        }
+    }
+
+    public static void checkPassword() {
+        int randomNumber = rand.nextInt(10000);
+        System.out.println("Guess the 4-digit passcode between 0000 and 9999;");
+
+        while (true) {
+            System.out.println("Passcode:");
+            String password = scanner.nextLine();
+            if (password.equals("Initiate Hacking")) {
+                try {
+                    hacks();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("The passcode is: " + randomNumber);
+            } else if (password.equals(String.valueOf(randomNumber))) {
+                System.out.println("Correct Password. Welcome Hacker.");
+                enterGame();
+                break;
+            } else {
+                System.out.println("Incorrect password, computer crash initiated.");
+                while (true) {
+                    System.out.println("100110101010101011010101101010101010101010011010101101010110101");
+                }
+            }
+        }
+    }
+
+  
+    public static String readLineWithTimeout(int timeoutSeconds) {
+        final String[] input = {null};
+
+        Thread inputThread = new Thread(() -> {
+            input[0] = scanner.nextLine();
+        });
+
+        inputThread.start();
+
+        try {
+            inputThread.join(timeoutSeconds * 1000L); 
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        if (inputThread.isAlive()) {
+            inputThread.interrupt();
+            return null; 
+        }
+
+        return input[0]; 
+    }
+}
