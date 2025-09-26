@@ -3,7 +3,28 @@ import java.util.*;
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
     private static final Random rand = new Random();
-
+    private static int key1 = 0;  
+    public static void partOmission() {
+        System.out.println("--Your command center--");
+            System.out.println("Scan, Search, 'Engage' Ultra-Protective Firewall, or start 'Message Mission: ");
+            String commandCenter = scanner.nextLine();
+            if (commandCenter.equals("Message Mission")) {
+                System.out.println("Mission Started.");
+            } else if (commandCenter.equals("Engage")) {
+                System.out.println("Firewall engaged");
+            } else if (commandCenter.equals("Search")) {
+                System.out.println("Searching the web and other locations for info...");
+                if (key1 == 1) {  
+                    System.out.println("Information found.");
+                } else { 
+                    System.out.println("No information found.");
+                    missionEnter();
+                }
+            } else {
+                System.out.println("Incorrect input. ");
+                partOmission();
+            }
+    }
     public static void main(String[] args) {
         checkPassword();
         scanner.close();
@@ -26,22 +47,11 @@ public class Main {
             Thread.sleep(5000);
             System.out.println("Interpretation: Your mission is to find MiliBops' secret file. Unknown Entity in need of dire help.");
             Thread.sleep(2000);
-            System.out.println("--Your command center--")
-            System.out.println("Scan, Search, engage Ultra-Protective Firewall, or ")
-            String commandCenter = scanner.nextLine();
-            
+            partOmission();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
     
     public static void GameEnter() throws InterruptedException {
         String[] wordz = {
@@ -114,7 +124,6 @@ public class Main {
         }
     }
 
-  
     public static String readLineWithTimeout(int timeoutSeconds) {
         final String[] input = {null};
 
